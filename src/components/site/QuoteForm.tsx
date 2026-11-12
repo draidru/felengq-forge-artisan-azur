@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 
 const fieldClass = "h-12 rounded-sm border-input bg-background/40 text-base placeholder:text-muted-foreground/70";
 
-function FieldError({ id, message }: { id: string; message?: string }) {
+function FieldError({ id, message }: { id: string; message?: string | undefined }) {
   if (!message) return null;
   return (
     <p id={id} role="alert" className="mt-1.5 text-xs text-destructive">
