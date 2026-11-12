@@ -75,7 +75,7 @@ export function QuoteForm() {
           control={control}
           name="projectType"
           render={({ field }) => (
-            <Select value={field.value ?? ""} onValueChange={field.onChange}>
+            <Select value={field.value ?? ""} onValueChange={(v) => v && field.onChange(v)}>
               <SelectTrigger id="projectType" className={cn(fieldClass, "mt-2")} {...a11y("projectType")}>
                 <SelectValue placeholder="Choisissez un type de projet" />
               </SelectTrigger>

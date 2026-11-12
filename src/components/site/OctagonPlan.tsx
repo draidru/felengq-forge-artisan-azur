@@ -83,9 +83,10 @@ export function OctagonPlan({ className }: { className?: string }) {
       </g>
 
       <g className="fill-current font-serif">
-        <text x="210" y="288" textAnchor="middle" fontSize="15" fontStyle="italic">Serre</text>
+        <text x="150" y="205" textAnchor="middle" fontSize="15" fontStyle="italic">Serre</text>
         <text x="210" y="363" textAnchor="middle" fontSize="12" letterSpacing="3">SAS</text>
-        <text x="210" y="258" textAnchor="middle" fontSize="9" letterSpacing="2" opacity="0.7">LANTERNE</text>
+        <text x="262" y="222" fontSize="9" letterSpacing="2" opacity="0.75">LANTERNE</text>
+        <path d="M258 218 L240 212" stroke="currentColor" strokeWidth="0.6" />
       </g>
 
       {/* Nord */}

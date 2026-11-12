@@ -121,6 +121,7 @@
     oklch(0.18 0 0 / 0.35) 40%,
     oklch(0.18 0 0 / 0.92) 100%
   );
+  --gradient-hero-side: linear-gradient(90deg, oklch(0.18 0 0 / 0.75) 0%, oklch(0.18 0 0 / 0.35) 55%, transparent 80%);
   --gradient-ember: radial-gradient(
     ellipse at 50% 100%,
     oklch(0.6 0.15 45 / 0.18) 0%,
@@ -156,7 +157,7 @@
 
 @layer base {
   * {
-    border-color: var(--color-border);
+    border-color: var(--border);
   }
 
   html {
@@ -165,8 +166,8 @@
   }
 
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: var(--background);
+    color: var(--foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
@@ -182,7 +183,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-ring);
+    outline: 2px solid var(--ring);
     outline-offset: 3px;
   }
 
@@ -200,7 +201,7 @@
   font-weight: 600;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-primary);
+  color: var(--primary);
 }
 
 /* Grain subtil sur fonds sombres */
@@ -223,7 +224,7 @@
 }
 
 @utility hero-overlay {
-  background-image: var(--gradient-hero);
+  background-image: var(--gradient-hero-side), var(--gradient-hero);
 }
 
 @utility brass-rule {

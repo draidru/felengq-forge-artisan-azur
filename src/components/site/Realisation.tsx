@@ -72,7 +72,7 @@ export function Realisation() {
           </Reveal>
 
           <Reveal delay={150}>
-            <figure className="h-full bg-ivory p-5 text-forge shadow-soft sm:p-8">
+            <figure className="flex h-full flex-col justify-center bg-ivory p-5 text-forge shadow-soft sm:p-8">
               <OctagonPlan className="mx-auto w-full max-w-md" />
               <figcaption className="mt-4 border-t border-forge/15 pt-4 text-center font-serif text-lg italic text-forge/80">
                 Plan de principe — octogone de 5,00 m, SAS d'entrée de 1,00 m
