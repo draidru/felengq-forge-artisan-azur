@@ -40,7 +40,7 @@ export function OctagonPlan({ className }: { className?: string }) {
         <path d={inner} strokeWidth="0.8" />
         {/* Faîtage vers la lanterne */}
         {corners.map(([x, y], i) => (
-          <line key={i} x1={x} y1={y} x2={lantern[i][0]} y2={lantern[i][1]} strokeWidth="0.7" strokeDasharray="4 4" />
+          <line key={i} x1={x} y1={y} x2={lantern[i]?.[0]} y2={lantern[i]?.[1]} strokeWidth="0.7" strokeDasharray="4 4" />
         ))}
         <polygon points={lantern.map((p) => p.join(",")).join(" ")} strokeWidth="1.2" />
         <circle cx="210" cy="200" r="9" strokeWidth="0.8" />
