@@ -7,6 +7,8 @@ import { Galerie } from "@/components/site/Galerie";
 import { Prestations } from "@/components/site/Prestations";
 import { Demarche } from "@/components/site/Demarche";
 import { Contact } from "@/components/site/Contact";
+import { Faq } from "@/components/site/Faq";
+import { FAQ } from "@/lib/faq";
 import { SITE } from "@/lib/site";
 import { INTRO_SESSION_KEY } from "@/components/site/CinematicIntro";
 
@@ -25,7 +27,11 @@ const jsonLd = {
   description: DESCRIPTION,
   telephone: SITE.phoneE164,
   email: SITE.email,
-  identifier: { "@type": "PropertyValue", propertyID: "SIREN", value: SITE.siren.replace(/\s/g, "") },
+  identifier: {
+    "@type": "PropertyValue",
+    propertyID: "SIREN",
+    value: SITE.siren.replace(/\s/g, ""),
+  },
   address: {
     "@type": "PostalAddress",
     streetAddress: SITE.address.street,
@@ -34,11 +40,23 @@ const jsonLd = {
     addressRegion: SITE.address.region,
     addressCountry: SITE.address.country,
   },
-  areaServed: ["Grasse", "Pays de Grasse", "Cannes", "Antibes", "Nice", "Côte d'Azur"].map((name) => ({
-    "@type": "Place",
-    name,
-  })),
+  areaServed: ["Grasse", "Pays de Grasse", "Cannes", "Antibes", "Nice", "Côte d'Azur"].map(
+    (name) => ({
+      "@type": "Place",
+      name,
+    }),
+  ),
   knowsAbout: ["Forge", "Estampage", "Matriçage", "Métallurgie des poudres", "Ferronnerie d'art"],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
 };
 
 export const Route = createFileRoute("/")({
@@ -55,7 +73,11 @@ export const Route = createFileRoute("/")({
       { name: "twitter:description", content: DESCRIPTION },
     ],
     links: [{ rel: "canonical", href: "/" }],
-    scripts: [{ children: introGate }, { type: "application/ld+json", children: JSON.stringify(jsonLd) }],
+    scripts: [
+      { children: introGate },
+      { type: "application/ld+json", children: JSON.stringify(jsonLd) },
+      { type: "application/ld+json", children: JSON.stringify(faqJsonLd) },
+    ],
   }),
   component: Index,
 });
@@ -69,6 +91,7 @@ function Index() {
       <Galerie />
       <Prestations />
       <Demarche />
+      <Faq />
       <Contact />
     </SiteLayout>
   );

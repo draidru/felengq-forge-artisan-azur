@@ -32,14 +32,37 @@ export const NAV_LINKS = [
   { hash: "contact", label: "Contact" },
 ] as const;
 
+export const NAV_SECTION_IDS = NAV_LINKS.map((l) => l.hash);
+
+export const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(SITE.mapQuery)}`;
+
 export const PROJECT_TYPES = [
-  "Serre ou orangerie",
   "Portail ou clôture",
   "Garde-corps ou rampe",
-  "Marquise ou pergola",
   "Grilles et protections",
+  "Marquise ou pergola",
+  "Serre ou orangerie",
   "Mobilier ou décoration",
   "Restauration de ferronnerie ancienne",
   "Pièce de forge / estampage / matriçage",
   "Autre projet",
 ] as const;
+
+export type ProjectType = (typeof PROJECT_TYPES)[number];
+
+const QUOTE_EVENT = "felenq:demande-devis";
+
+/** Pré-remplit le type de projet du formulaire de devis puis fait défiler jusqu'au contact. */
+export function requestQuote(projectType?: ProjectType) {
+  if (typeof window === "undefined") return;
+  window.dispatchEvent(
+    new CustomEvent<ProjectType | undefined>(QUOTE_EVENT, { detail: projectType }),
+  );
+  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+}
+
+export function onQuoteRequest(handler: (projectType?: ProjectType) => void) {
+  const listener = (e: Event) => handler((e as CustomEvent<ProjectType | undefined>).detail);
+  window.addEventListener(QUOTE_EVENT, listener);
+  return () => window.removeEventListener(QUOTE_EVENT, listener);
+}

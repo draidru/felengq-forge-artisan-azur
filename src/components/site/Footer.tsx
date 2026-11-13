@@ -23,12 +23,18 @@ export function Footer() {
                 {SITE.address.postalCode} {SITE.address.city}
               </p>
               <p className="pt-2">
-                <a href={SITE.phoneHref} className="text-foreground transition-colors hover:text-primary">
+                <a
+                  href={SITE.phoneHref}
+                  className="text-foreground transition-colors hover:text-primary"
+                >
                   {SITE.phoneDisplay}
                 </a>
               </p>
               <p>
-                <a href={SITE.emailHref} className="break-all text-foreground transition-colors hover:text-primary">
+                <a
+                  href={SITE.emailHref}
+                  className="break-all text-foreground transition-colors hover:text-primary"
+                >
                   {SITE.email}
                 </a>
               </p>
@@ -40,13 +46,29 @@ export function Footer() {
             <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
               {NAV_LINKS.map((l) => (
                 <li key={l.hash}>
-                  <Link to="/" hash={l.hash} className="text-muted-foreground transition-colors hover:text-primary">
+                  <Link
+                    to="/"
+                    hash={l.hash}
+                    className="text-muted-foreground transition-colors hover:text-primary"
+                  >
                     {l.label}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link to="/mentions-legales" className="text-muted-foreground transition-colors hover:text-primary">
+                <Link
+                  to="/"
+                  hash="faq"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                >
+                  Questions fréquentes
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/mentions-legales"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                >
                   Mentions légales
                 </Link>
               </li>

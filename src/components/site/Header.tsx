@@ -11,6 +11,24 @@ import { OrnamentDivider } from "./Ornament";
 export function Header({ solid = false }: { solid?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState<string | null>(null);
+
+  // Met en évidence la rubrique visible à l'écran.
+  useEffect(() => {
+    if (!("IntersectionObserver" in window)) return;
+    const sections = NAV_LINKS.map((l) => document.getElementById(l.hash)).filter(
+      (el): el is HTMLElement => !!el,
+    );
+    if (!sections.length) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) if (e.isIntersecting) setActive(e.target.id);
+      },
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    sections.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -28,7 +46,12 @@ export function Header({ solid = false }: { solid?: boolean }) {
         filled ? "border-b border-border bg-background/92 backdrop-blur-md" : "bg-transparent",
       )}
     >
-      <div className={cn("mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-500 sm:px-8", filled ? "h-16" : "h-20")}>
+      <div
+        className={cn(
+          "mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-500 sm:px-8",
+          filled ? "h-16" : "h-20",
+        )}
+      >
         <Logo size={filled ? "compact" : "header"} />
 
         <nav aria-label="Navigation principale" className="hidden lg:block">
@@ -38,7 +61,11 @@ export function Header({ solid = false }: { solid?: boolean }) {
                 <Link
                   to="/"
                   hash={l.hash}
-                  className="relative text-xs font-semibold uppercase tracking-[0.2em] text-foreground/80 transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:text-foreground hover:after:w-full"
+                  aria-current={active === l.hash ? "location" : undefined}
+                  className={cn(
+                    "relative text-xs font-semibold uppercase tracking-[0.2em] text-foreground/80 transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:text-foreground hover:after:w-full",
+                    active === l.hash && "text-foreground after:w-full",
+                  )}
                 >
                   {l.label}
                 </Link>
@@ -57,11 +84,19 @@ export function Header({ solid = false }: { solid?: boolean }) {
 
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-foreground lg:hidden" aria-label="Ouvrir le menu">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-foreground lg:hidden"
+                aria-label="Ouvrir le menu"
+              >
                 <Menu className="!size-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="dark grain w-full max-w-sm border-border bg-background text-foreground">
+            <SheetContent
+              side="right"
+              className="dark grain w-full max-w-sm border-border bg-background text-foreground"
+            >
               <SheetTitle className="sr-only">Menu</SheetTitle>
               <div className="mt-2">
                 <Logo onClick={() => setOpen(false)} />
