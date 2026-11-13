@@ -31,6 +31,8 @@ use the editor.
 
 ## Project rules
 - Site sections live as separate components in `src/components/site/`; routes only compose them — keeps sections reusable and easy to edit.
-- Business facts (name, SIREN, address, phone, zone, nav anchors, project types) come only from `src/lib/site.ts` — single source of truth, never hardcode them in components.
+- Business facts (name, SIREN, address, phone, email, zone, nav anchors, project types) come only from `src/lib/site.ts` — single source of truth, never hardcode them in components.
 - Dark sections use the `dark` class on the section element to scope the dark token set; light sections use default `:root` tokens — no ad hoc colors.
 - Homepage is one page with in-page anchors (explicit client request); shared header/footer link via `<Link to="/" hash=...>` so they work from other pages.
+- `LogoFelenq.tsx` is generated verbatim from `src/assets/logo-felenq.svg` (inline JSX, ids via `useId`) — never hand-edit paths or colors; regenerate from the SVG.
+- Homepage intro plays once per session: an inline head script adds `intro-skip` on `<html>` before paint; all hero/intro motion is CSS keyed on that class and on `prefers-reduced-motion`.

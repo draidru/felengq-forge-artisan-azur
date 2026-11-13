@@ -10,7 +10,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid gap-12 md:grid-cols-3">
           <div>
-            <Logo />
+            <Logo size="footer" />
             <p className="mt-6 text-sm leading-relaxed text-muted-foreground">{SITE.legalName}</p>
             <p className="mt-1 text-sm text-muted-foreground">SIREN {SITE.siren}</p>
           </div>
@@ -25,6 +25,11 @@ export function Footer() {
               <p className="pt-2">
                 <a href={SITE.phoneHref} className="text-foreground transition-colors hover:text-primary">
                   {SITE.phoneDisplay}
+                </a>
+              </p>
+              <p>
+                <a href={SITE.emailHref} className="break-all text-foreground transition-colors hover:text-primary">
+                  {SITE.email}
                 </a>
               </p>
             </address>

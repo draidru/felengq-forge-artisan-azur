@@ -38,7 +38,7 @@ export function QuoteForm() {
     // Pas encore d'envoi côté serveur : simple confirmation.
     await new Promise((r) => setTimeout(r, 400));
     toast.success("Merci pour votre demande de devis", {
-      description: `Votre demande a bien été prise en compte. Pour toute urgence : ${SITE.phoneDisplay}.`,
+      description: `Votre demande a bien été prise en compte. Pour toute urgence : ${SITE.phoneDisplay} ; vous pouvez aussi écrire à ${SITE.email}.`,
     });
     reset();
   };

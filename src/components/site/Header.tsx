@@ -29,7 +29,7 @@ export function Header({ solid = false }: { solid?: boolean }) {
       )}
     >
       <div className={cn("mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-500 sm:px-8", filled ? "h-16" : "h-20")}>
-        <Logo />
+        <Logo size={filled ? "compact" : "header"} />
 
         <nav aria-label="Navigation principale" className="hidden lg:block">
           <ul className="flex items-center gap-8">
