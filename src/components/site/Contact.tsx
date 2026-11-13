@@ -1,5 +1,6 @@
-import { MapPin, Phone, Compass } from "lucide-react";
+import { MapPin, Phone, Compass, Mail } from "lucide-react";
 import { SITE, fullAddress } from "@/lib/site";
+import { LogoFelenq } from "./LogoFelenq";
 import { QuoteForm } from "./QuoteForm";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
@@ -11,6 +12,9 @@ export function Contact() {
     <section id="contact" aria-labelledby="contact-title" className="dark grain relative overflow-hidden bg-background py-24 sm:py-32">
       <div className="ember-glow animate-ember absolute inset-x-0 bottom-0 h-1/2" aria-hidden="true" />
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+        <Reveal className="mb-10 flex justify-center">
+          <LogoFelenq className="aspect-[394/374] h-auto w-[140px]" />
+        </Reveal>
         <SectionHeading
           id="contact-title"
           eyebrow="Contact & devis"
@@ -37,6 +41,15 @@ export function Contact() {
                   <p className="eyebrow !text-[0.65rem]">Téléphone</p>
                   <a href={SITE.phoneHref} className="mt-1 block font-serif text-3xl text-foreground transition-colors hover:text-primary">
                     {SITE.phoneDisplay}
+                  </a>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <Mail className="mt-1 h-5 w-5 shrink-0 text-primary" strokeWidth={1.25} aria-hidden="true" />
+                <div>
+                  <p className="eyebrow !text-[0.65rem]">E-mail</p>
+                  <a href={SITE.emailHref} className="mt-1 block break-all text-lg text-foreground transition-colors hover:text-primary">
+                    {SITE.email}
                   </a>
                 </div>
               </div>

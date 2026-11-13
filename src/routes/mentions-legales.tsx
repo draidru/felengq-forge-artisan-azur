@@ -52,6 +52,12 @@ function MentionsLegales() {
                 {SITE.phoneDisplay}
               </a>
             </p>
+            <p>
+              E-mail :{" "}
+              <a href={SITE.emailHref} className="break-all text-primary underline-offset-4 hover:underline">
+                {SITE.email}
+              </a>
+            </p>
             <p>Directeur de la publication : Guillaume Felenq</p>
           </Block>
 

@@ -14,6 +14,8 @@ export const SITE = {
   phoneDisplay: "06 30 42 65 00",
   phoneHref: "tel:+33630426500",
   phoneE164: "+33630426500",
+  email: "felenqguillaume@gmail.com",
+  emailHref: "mailto:felenqguillaume@gmail.com",
   activity: "Forge, estampage, matriçage ; métallurgie des poudres",
   zone: ["Grasse", "Pays de Grasse", "Cannes", "Antibes", "Nice", "toute la Côte d'Azur"],
   mapQuery: "107 Vieux Chemin de Sainte-Anne, 06130 Grasse",

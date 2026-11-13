@@ -8,6 +8,10 @@ import { Prestations } from "@/components/site/Prestations";
 import { Demarche } from "@/components/site/Demarche";
 import { Contact } from "@/components/site/Contact";
 import { SITE } from "@/lib/site";
+import { INTRO_SESSION_KEY } from "@/components/site/CinematicIntro";
+
+// Masque l'intro avant le premier affichage si elle a déjà été vue dans la session ou si les animations sont réduites.
+const introGate = `try{var d=document.documentElement;if(sessionStorage.getItem("${INTRO_SESSION_KEY}")||matchMedia("(prefers-reduced-motion: reduce)").matches)d.classList.add("intro-skip")}catch(e){}`;
 
 const TITLE = "Ferronnier d'art à Grasse — Forge, serres et ferronnerie sur mesure | Felenq";
 const DESCRIPTION =
@@ -20,6 +24,7 @@ const jsonLd = {
   legalName: SITE.legalName,
   description: DESCRIPTION,
   telephone: SITE.phoneE164,
+  email: SITE.email,
   identifier: { "@type": "PropertyValue", propertyID: "SIREN", value: SITE.siren.replace(/\s/g, "") },
   address: {
     "@type": "PostalAddress",
@@ -45,11 +50,12 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
     ],
     links: [{ rel: "canonical", href: "/" }],
-    scripts: [{ type: "application/ld+json", children: JSON.stringify(jsonLd) }],
+    scripts: [{ children: introGate }, { type: "application/ld+json", children: JSON.stringify(jsonLd) }],
   }),
   component: Index,
 });
