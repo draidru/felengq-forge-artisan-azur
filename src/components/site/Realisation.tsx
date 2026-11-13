@@ -3,17 +3,6 @@ import { OrnamentDivider } from "./Ornament";
 import { OctagonPlan } from "./OctagonPlan";
 import { Reveal } from "./Reveal";
 
-const SPECS: { label: string; value: string }[] = [
-  { label: "Plan", value: "Octogonal, 5,00 m × 5,00 m" },
-  { label: "Hauteur totale", value: "≈ 3,20 m" },
-  { label: "Vitrage", value: "Hauteur vitrée 2,60 m sur imposte basse pleine isolée de 0,90 m" },
-  { label: "Toiture", value: "Vitrée, avec lanterne centrale surélevée et épi de faîtage" },
-  { label: "Ornementation", value: "Volutes et frises de style provençal en fer forgé" },
-  { label: "Ventilation", value: "Fenêtres lobatantes (oscillo-battantes) dans chaque angle" },
-  { label: "Entrée", value: "SAS vitré de 1,00 m avec double porte ornementée" },
-  { label: "Finition", value: "Structure métallique peinte noir" },
-];
-
 export function Realisation() {
   return (
     <section id="realisation" aria-labelledby="realisation-title" className="dark grain relative overflow-hidden bg-background py-24 sm:py-32">
@@ -55,23 +44,8 @@ export function Realisation() {
           </Reveal>
         </div>
 
-        <div className="mt-20 grid gap-10 lg:grid-cols-2 lg:gap-14">
+        <div className="mx-auto mt-20 max-w-xl">
           <Reveal>
-            <div className="h-full border border-border bg-card p-7 sm:p-10">
-              <h3 className="text-3xl text-card-foreground">Fiche technique</h3>
-              <span className="brass-rule mt-5 block w-24" aria-hidden="true" />
-              <dl className="mt-6 divide-y divide-border">
-                {SPECS.map((s) => (
-                  <div key={s.label} className="grid gap-1 py-4 sm:grid-cols-[9rem_1fr] sm:gap-6">
-                    <dt className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-primary">{s.label}</dt>
-                    <dd className="text-sm leading-relaxed text-card-foreground sm:text-base">{s.value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          </Reveal>
-
-          <Reveal delay={150}>
             <figure className="flex h-full flex-col justify-center bg-ivory p-5 text-forge shadow-soft sm:p-8">
               <OctagonPlan className="mx-auto w-full max-w-md" />
               <figcaption className="mt-4 border-t border-forge/15 pt-4 text-center font-serif text-lg italic text-forge/80">
