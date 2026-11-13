@@ -1,6 +1,5 @@
 import serreImage from "@/assets/serre-octogonale.jpg";
 import { OrnamentDivider } from "./Ornament";
-import { OctagonPlan } from "./OctagonPlan";
 import { Reveal } from "./Reveal";
 
 export function Realisation() {
@@ -41,17 +40,6 @@ export function Realisation() {
             >
               Imaginer votre serre <span aria-hidden="true">→</span>
             </a>
-          </Reveal>
-        </div>
-
-        <div className="mx-auto mt-20 max-w-xl">
-          <Reveal>
-            <figure className="flex h-full flex-col justify-center bg-ivory p-5 text-forge shadow-soft sm:p-8">
-              <OctagonPlan className="mx-auto w-full max-w-md" />
-              <figcaption className="mt-4 border-t border-forge/15 pt-4 text-center font-serif text-lg italic text-forge/80">
-                Plan de principe — octogone de 5,00 m, SAS d'entrée de 1,00 m
-              </figcaption>
-            </figure>
           </Reveal>
         </div>
       </div>
